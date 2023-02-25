@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = AWindow(windowScene: windowScene)
         window.frame = UIScreen.main.bounds
         let view = ShareholderView(frame: window.frame)
+        view.configure(with: ShareholderViewModel.Seeds.value)
         window.addASubview(view)
         self.window = window
         window.makeKeyAndVisible()

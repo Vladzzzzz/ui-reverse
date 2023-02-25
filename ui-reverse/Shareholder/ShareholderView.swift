@@ -25,10 +25,28 @@ final class ShareholderView: AView {
     }
 
     private let imageView: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
-    private let titleLabel: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
-    private let subtitleLabel: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
     private let button: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
-    private let descriptionLabel: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
+    private let titleLabel: ALabel = {
+        let view = ALabel()
+        view.font = Constants.titleFont
+        return view
+    }()
+    private let subtitleLabel: ALabel = {
+        let view = ALabel()
+        view.font = Constants.subtitleFont
+        return view
+    }()
+    private let descriptionLabel: ALabel = {
+        let view = ALabel()
+        view.font = Constants.descriptionFont
+        return view
+    }()
+
+    func configure(with viewModel: ShareholderViewModel) {
+        titleLabel.text = viewModel.title
+        subtitleLabel.text = viewModel.subtitle
+        descriptionLabel.text = viewModel.description
+    }
 }
 
 private extension ShareholderView {
@@ -68,6 +86,22 @@ private extension ShareholderView {
                 width: viewSize.width - 2 * Constants.horizontalInset,
                 height: viewSize.size.height - button.frame.maxY + Constants.verticalSpacing - Constants.verticalInset
             )
+        )
+    }
+}
+
+struct ShareholderViewModel {
+    let title: String
+    let subtitle: String
+    let description: String
+}
+
+extension ShareholderViewModel {
+    enum Seeds {
+        static let value = ShareholderViewModel(
+            title: "Иванов Сергей Викторович",
+            subtitle: "Главный Акционер \"Рога и Копыта\"",
+            description: "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum."
         )
     }
 }
