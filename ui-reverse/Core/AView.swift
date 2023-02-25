@@ -1,11 +1,12 @@
 import UIKit
 
-public class AView: NSObject {
+public class AView: NSObject, CALayerDelegate {
     // MARK: - Init
 
     public init(frame: CGRect = .zero) {
         super.init()
         self.frame = frame
+        layer.delegate = self
     }
 
     // MARK: - Layer
@@ -50,7 +51,6 @@ public class AView: NSObject {
         view.superview = self
     }
 
-
     public func removeFromSuperview() {
         superview?.remove(subview: self)
         layer.removeFromSuperlayer()
@@ -60,4 +60,29 @@ public class AView: NSObject {
     func remove(subview: AView) {
         subviews.removeAll { $0 === subview }
     }
+
+    // MARK: - Layout
+
+    public func layoutSubviews() { }
+
+    public func setNeedsLayout() { layer.setNeedsLayout() }
+
+    public func layoutIfNeeded() { layer.layoutIfNeeded() }
+
+    // MARK: - Display
+
+    public func draw(_ rect: CGRect) { }
+
+    public func setNeedsDisplay() { layer.setNeedsDisplay() }
+
+    // MARK: - CALayerDelegate
+
+    public func draw(_ layer: CALayer, in ctx: CGContext) {
+        let rect = ctx.boundingBoxOfClipPath
+        UIGraphicsPushContext(ctx)
+        draw(rect)
+        UIGraphicsPopContext()
+    }
+
+    public func layoutSublayers(of _: CALayer) { layoutSubviews() }
 }

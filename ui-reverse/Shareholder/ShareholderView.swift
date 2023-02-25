@@ -13,12 +13,15 @@ final class ShareholderView: AView {
         static let descriptionFont = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
-
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         backgroundColor = .lightGray
         addSubviews()
-        configureLayout(viewSize: frame)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureLayout(viewSize: bounds)
     }
 
     private let imageView: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
@@ -30,9 +33,7 @@ final class ShareholderView: AView {
 
 private extension ShareholderView {
     func addSubviews() {
-        [imageView, titleLabel, subtitleLabel, button, descriptionLabel].forEach {
-            addSubview($0)
-        }
+        [imageView, titleLabel, subtitleLabel, button, descriptionLabel].forEach { addSubview($0) }
     }
 
     func configureLayout(viewSize: CGRect) {
