@@ -1,6 +1,6 @@
 import UIKit
 
-public class AView: NSObject, CALayerDelegate {
+public class AView: AResponder, CALayerDelegate {
     // MARK: - Init
 
     public init(frame: CGRect = .zero) {
@@ -85,4 +85,37 @@ public class AView: NSObject, CALayerDelegate {
     }
 
     public func layoutSublayers(of _: CALayer) { layoutSubviews() }
+
+    // MARK: - HitTesting
+
+    public var isUserInteractionEnabled = true
+
+    public func hitTest(_ point: CGPoint, with event: UIEvent?) -> AView? {
+        guard !isHidden, isUserInteractionEnabled, alpha >= 0.01, self.point(inside: point, with: event) else {
+            return nil
+        }
+
+        // reversed из за Z координаты
+        for subview in subviews.reversed() {
+            if let hitView = subview.hitTest(subview.convert(point, from: self), with: event) {
+                return hitView
+            }
+        }
+
+        return self
+    }
+
+    public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        self.bounds.contains(point)
+    }
+
+    public func convert(_ point: CGPoint, from view: AView) -> CGPoint {
+        view.layer.convert(point, to: self.layer)
+    }
+
+    // MARK: - Responder
+
+    public override var next: AResponder? {
+        superview
+    }
 }
