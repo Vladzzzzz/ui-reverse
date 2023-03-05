@@ -29,7 +29,16 @@ final class ShareholderView: AView {
         view.layer.masksToBounds = true
         return view
     }()
-    private let button: AView = { let view = AView(); view.backgroundColor = .gray; return view }()
+    private let button: AButton = {
+        let button = AButton()
+        button.title = "Инфо"
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.red, for: .highlighted)
+        button.setBackgroundColor(.black, for: .highlighted)
+        button.setBackgroundColor(.darkGray, for: .normal)
+        button.titleLabel.textAlignment = .center
+        return button
+    }()
     private let titleLabel: ALabel = {
         let view = ALabel()
         view.font = Constants.titleFont
