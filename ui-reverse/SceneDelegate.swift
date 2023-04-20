@@ -17,10 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = AWindow(windowScene: windowScene)
-        window.frame = UIScreen.main.bounds
-        let view = ShareholderView(frame: window.frame)
-        view.configure(with: ShareholderViewModel.Seeds.value)
-        window.addASubview(view)
+        window.aRootViewController = ShareholderViewController()
         self.window = window
         window.makeKeyAndVisible()
     }

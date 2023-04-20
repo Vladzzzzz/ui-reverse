@@ -17,8 +17,11 @@
 		6484F013299A9B540029D5BB /* ShareholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484F012299A9B540029D5BB /* ShareholderView.swift */; };
 		6484F016299AB8110029D5BB /* AWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484F015299AB8110029D5BB /* AWindow.swift */; };
 		64924C7829B0072400DF109C /* AResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64924C7729B0072400DF109C /* AResponder.swift */; };
+		64AA464229C25511009CD813 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AA464129C25511009CD813 /* InfoViewController.swift */; };
 		64C0018E29B4E9480049D795 /* AControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0018D29B4E9480049D795 /* AControl.swift */; };
 		64C0019029B528DF0049D795 /* AButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0018F29B528DF0049D795 /* AButton.swift */; };
+		64C0019229B54D8E0049D795 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0019129B54D8E0049D795 /* AViewController.swift */; };
+		64C0019429B571150049D795 /* ShareholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0019329B571150049D795 /* ShareholderViewController.swift */; };
 		64CB26B729AA1CD100DCE9CD /* ALabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB26B629AA1CD100DCE9CD /* ALabel.swift */; };
 		64CB26B929AA4F0C00DCE9CD /* AImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB26B829AA4F0C00DCE9CD /* AImageView.swift */; };
 /* End PBXBuildFile section */
@@ -36,8 +39,11 @@
 		6484F012299A9B540029D5BB /* ShareholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareholderView.swift; sourceTree = "<group>"; };
 		6484F015299AB8110029D5BB /* AWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWindow.swift; sourceTree = "<group>"; };
 		64924C7729B0072400DF109C /* AResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AResponder.swift; sourceTree = "<group>"; };
+		64AA464129C25511009CD813 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		64C0018D29B4E9480049D795 /* AControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AControl.swift; sourceTree = "<group>"; };
 		64C0018F29B528DF0049D795 /* AButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AButton.swift; sourceTree = "<group>"; };
+		64C0019129B54D8E0049D795 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
+		64C0019329B571150049D795 /* ShareholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareholderViewController.swift; sourceTree = "<group>"; };
 		64CB26B629AA1CD100DCE9CD /* ALabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALabel.swift; sourceTree = "<group>"; };
 		64CB26B829AA4F0C00DCE9CD /* AImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +81,7 @@
 				6484F00F299A963B0029D5BB /* Core */,
 				6484EFFB299A962D0029D5BB /* AppDelegate.swift */,
 				6484F014299AB5FF0029D5BB /* Shareholder */,
+				64AA464029C254CA009CD813 /* Info */,
 				6484EFFD299A962D0029D5BB /* SceneDelegate.swift */,
 				6484EFFF299A962D0029D5BB /* ViewController.swift */,
 				6484F001299A962D0029D5BB /* Main.storyboard */,
@@ -95,6 +102,7 @@
 				64924C7729B0072400DF109C /* AResponder.swift */,
 				64C0018D29B4E9480049D795 /* AControl.swift */,
 				64C0018F29B528DF0049D795 /* AButton.swift */,
+				64C0019129B54D8E0049D795 /* AViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -103,8 +111,17 @@
 			isa = PBXGroup;
 			children = (
 				6484F012299A9B540029D5BB /* ShareholderView.swift */,
+				64C0019329B571150049D795 /* ShareholderViewController.swift */,
 			);
 			path = Shareholder;
+			sourceTree = "<group>";
+		};
+		64AA464029C254CA009CD813 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				64AA464129C25511009CD813 /* InfoViewController.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,9 +199,12 @@
 				6484F000299A962D0029D5BB /* ViewController.swift in Sources */,
 				6484F016299AB8110029D5BB /* AWindow.swift in Sources */,
 				64924C7829B0072400DF109C /* AResponder.swift in Sources */,
+				64AA464229C25511009CD813 /* InfoViewController.swift in Sources */,
+				64C0019229B54D8E0049D795 /* AViewController.swift in Sources */,
 				64CB26B929AA4F0C00DCE9CD /* AImageView.swift in Sources */,
 				6484EFFC299A962D0029D5BB /* AppDelegate.swift in Sources */,
 				64C0018E29B4E9480049D795 /* AControl.swift in Sources */,
+				64C0019429B571150049D795 /* ShareholderViewController.swift in Sources */,
 				6484F011299A96550029D5BB /* AView.swift in Sources */,
 				64CB26B729AA1CD100DCE9CD /* ALabel.swift in Sources */,
 				6484EFFE299A962D0029D5BB /* SceneDelegate.swift in Sources */,

@@ -52,6 +52,11 @@ public class AView: AResponder, CALayerDelegate {
     }
 
     public func removeFromSuperview() {
+        if let aWindow = aWindow {
+            // Особая обработка, тк мы не наследуем window от AView
+            aWindow.aSubviews.removeAll { $0 === self }
+        }
+
         superview?.remove(subview: self)
         layer.removeFromSuperlayer()
         superview = nil
@@ -84,7 +89,11 @@ public class AView: AResponder, CALayerDelegate {
         UIGraphicsPopContext()
     }
 
-    public func layoutSublayers(of _: CALayer) { layoutSubviews() }
+    public func layoutSublayers(of _: CALayer) {
+        viewController?.viewWillLayoutSubviews()
+        layoutSubviews()
+        viewController?.viewDidLayoutSubviews()
+    }
 
     // MARK: - HitTesting
 
@@ -115,7 +124,27 @@ public class AView: AResponder, CALayerDelegate {
 
     // MARK: - Responder
 
+    weak var aWindow: AWindow?
+    public var window: AWindow? {
+        aWindow ?? superview?.window
+    }
+    weak var viewController: AViewController?
+
     public override var next: AResponder? {
-        superview
+        viewController ?? superview
+    }
+
+    // MARK: - Animation
+
+    public static func animate(
+        withDuration duration: TimeInterval,
+        animations: () -> Void,
+        completion: ((Bool) -> Void)?
+    ) {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setCompletionBlock { completion?(true) }
+        animations()
+        CATransaction.commit()
     }
 }

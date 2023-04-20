@@ -8,11 +8,21 @@
 import UIKit
 
 public class AWindow: UIWindow {
-    public private(set) var aSubviews: [AView] = []
+    public internal(set) var aSubviews: [AView] = []
+
+    public var aRootViewController: AViewController? {
+        didSet {
+            if let vc = aRootViewController {
+                vc.view.frame = bounds
+                addASubview(vc.view)
+            }
+        }
+    }
 
     public func addASubview(_ view: AView) {
         layer.addSublayer(view.layer)
         aSubviews.append(view)
+        view.aWindow = self
     }
 
     public override func sendEvent(_ event: UIEvent) {

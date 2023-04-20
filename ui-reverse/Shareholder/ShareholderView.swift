@@ -1,5 +1,9 @@
 import UIKit
 
+protocol ShareholderViewDelegete: AnyObject {
+    func didPressInfo()
+}
+
 final class ShareholderView: AView {
     private enum Constants {
         static let horizontalInset: CGFloat = 16
@@ -12,6 +16,8 @@ final class ShareholderView: AView {
         static let subtitleFont = UIFont.systemFont(ofSize: 14, weight: .thin)
         static let descriptionFont = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
+
+    weak var delegate: ShareholderViewDelegete?
 
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -29,7 +35,7 @@ final class ShareholderView: AView {
         view.layer.masksToBounds = true
         return view
     }()
-    private let button: AButton = {
+    private lazy var button: AButton = {
         let button = AButton()
         button.title = "Инфо"
         button.setTitleColor(.white, for: .normal)
@@ -37,6 +43,7 @@ final class ShareholderView: AView {
         button.setBackgroundColor(.black, for: .highlighted)
         button.setBackgroundColor(.darkGray, for: .normal)
         button.titleLabel.textAlignment = .center
+        button.addTarget(self, action: #selector(tapInfo), for: .touchUpInside)
         return button
     }()
     private let titleLabel: ALabel = {
@@ -64,6 +71,11 @@ final class ShareholderView: AView {
 }
 
 private extension ShareholderView {
+    @objc
+    func tapInfo() {
+        delegate?.didPressInfo()
+    }
+
     func addSubviews() {
         [imageView, titleLabel, subtitleLabel, button, descriptionLabel].forEach { addSubview($0) }
     }
